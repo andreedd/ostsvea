@@ -6,14 +6,16 @@ import Img from "gatsby-image"
 
 const UPageTemplate = ({ data }) => {
 
+    const value = data.page.content
+
+    const source =  value.replace(/\n/gi, '\n &nbsp;\n');
+
+
     return<Layout>
     <div>
-        {data.page.image != null &&
-            <Img fluid={data.page.image.childImageSharp.fluid} />
-        }
         <div className="content">
           <h1>{data.page.title}</h1>
-          <ReactMarkdown source={data.page.content} />
+          <ReactMarkdown className="line-break" source={source} />
         </div>
     </div>
     </Layout>
@@ -25,13 +27,6 @@ query GetSingleUnlinkedPage($slug:String)
     page: strapiUnlinkedPage(title: {eq: $slug}) {
       title
       content
-      image{
-        childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
     }
   }
 `

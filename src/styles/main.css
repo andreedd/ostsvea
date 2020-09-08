@@ -156,6 +156,10 @@ footer{
     }
 }
 
+.line-break{
+    white-space: pre-line
+}
+
 @media only screen and (min-width:1200px){
     main{
         grid-template-columns: 1fr 900px 1fr;
