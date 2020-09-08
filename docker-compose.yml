@@ -1,0 +1,8 @@
+version: '3'
+services:
+  strapi:
+    image: strapi/strapi:3.1.4
+    volumes:
+      - ./cms:/srv/app
+    ports:
+      - '1337:1337'
