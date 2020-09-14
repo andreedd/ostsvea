@@ -118,6 +118,14 @@ footer{
     color: var(--navLinkColor);
 }
 
+.content img{
+    max-height: 40vh;
+    max-width: 100%;
+    /* keep img ratio correct */
+    width: auto !important;
+    height: auto !important;
+}
+
 .icons{
    display: flex;
    justify-content: space-around;
