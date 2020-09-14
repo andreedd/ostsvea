@@ -5,6 +5,7 @@ import styles from "./styles/navbar.module.css"
 import logo from "../images/ostsvealogoclean.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars , faTimes} from '@fortawesome/free-solid-svg-icons'
+import Img from "gatsby-image"
 
 const Navbar = () => {
     const data = useStaticQuery(graphql`
@@ -20,15 +21,24 @@ const Navbar = () => {
           title
         }
       }
+      placeholderImage: file(relativePath: { eq: "ostsvealogoclean.png" }) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
     }
   `)
 
   let slugify = require('slugify')
   const [showMenu, setShowMenu] = useState(false)
 
+  console.log(data.placeholderImage.childImageSharp.fluid)
+
     return (
         <nav className={styles.navbar}>
-          <Link to="/"><img className={styles.logo} src={logo} alt="logo"/></Link>
+          <Link to="/"><Img className={styles.logo} fluid={data.placeholderImage.childImageSharp.fluid} /></Link>
           <div className={styles.burger}>
           {!showMenu
             ? <FontAwesomeIcon
