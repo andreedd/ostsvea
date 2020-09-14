@@ -28,7 +28,7 @@ const IndexPage = ( ) => {
     if(page.title === "Startsida"){
       isTitle = true
       const value = page.content
-      const source =  value.replace(/\n/gi, '\n &nbsp;\n');
+      const source =  value.replace(/\n/gi, '&nbsp;\n');
       content = <ReactMarkdown className="line-break" source={source} />
     }
   });

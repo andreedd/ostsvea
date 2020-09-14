@@ -8,7 +8,7 @@ const UPageTemplate = ({ data }) => {
 
     const value = data.page.content
 
-    const source =  value.replace(/\n/gi, '\n &nbsp;\n');
+    const source =  value.replace(/\n/gi, '&nbsp;\n');
 
 
     return<Layout>
