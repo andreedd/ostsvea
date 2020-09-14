@@ -13,6 +13,9 @@ const UPageTemplate = ({ data }) => {
 
     return<Layout>
     <div>
+        {data.page.image != null &&
+          <Img fluid={data.page.image.childImageSharp.fluid} />
+        }
         <div className="content">
           <h1>{data.page.title}</h1>
           <ReactMarkdown className="line-break" source={source} />
@@ -27,6 +30,13 @@ query GetSingleUnlinkedPage($slug:String)
     page: strapiUnlinkedPage(title: {eq: $slug}) {
       title
       content
+      image{
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
     }
   }
 `

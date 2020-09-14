@@ -12,6 +12,9 @@ const PageTemplate = ({ data }) => {
 
     return<Layout>
     <div>
+        {data.page.image != null &&
+          <Img fluid={data.page.image.childImageSharp.fluid} />
+        }
         <div className="content">
           <h1>{data.page.title}</h1>
           <ReactMarkdown className="line-break" source={source} />
@@ -26,6 +29,13 @@ query GetSinglePage($slug:String)
     page: strapiPage(title: {eq: $slug}) {
       title
       content
+      image{
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
     }
   }
 `
