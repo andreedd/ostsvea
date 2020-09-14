@@ -2,7 +2,6 @@ import React, {useState } from 'react'
 
 import {Link, useStaticQuery, graphql} from "gatsby"
 import styles from "./styles/navbar.module.css"
-import logo from "../images/ostsvealogoclean.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars , faTimes} from '@fortawesome/free-solid-svg-icons'
 import Img from "gatsby-image"
@@ -34,8 +33,6 @@ const Navbar = () => {
   let slugify = require('slugify')
   const [showMenu, setShowMenu] = useState(false)
 
-  console.log(data.placeholderImage.childImageSharp.fluid)
-
     return (
         <nav className={styles.navbar}>
           <Link to="/"><Img className={styles.logo} fluid={data.placeholderImage.childImageSharp.fluid} /></Link>
@@ -57,9 +54,12 @@ const Navbar = () => {
           <ul id={styles.mobileNav} className={showMenu ? styles.slideIn : styles.slideOut}>
           <Link to={"/"}><li>Startsida</li></Link>
             {data.allStrapiPage.nodes.map((page)=> {
+              if(page.title !== "Startsida"){
                 return <Link to={`/pages/${slugify(page.title)}`} key={page.title}>
-                    <li>{page.title}</li>
-                </Link>
+                <li>{page.title}</li>
+              </Link>
+                }
+                return null
               })}
               <br/>
               {data.allStrapiLink.nodes.map((link)=> {
