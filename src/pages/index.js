@@ -44,7 +44,6 @@ const IndexPage = ( ) => {
     </div>
     <div className="content">
       <div>
-      <h1>Välkommen till Östsvea</h1>
       {isTitle
         ? <div>{content}</div>
         : <div>

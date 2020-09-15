@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import ReactMarkdown from "react-markdown"
 import Img from "gatsby-image"
+import SEO from "../components/seo"
 
 const PageTemplate = ({ data }) => {
 
@@ -11,6 +12,7 @@ const PageTemplate = ({ data }) => {
     const source =  value.replace(/\n/gi, '&nbsp;\n');
 
     return<Layout>
+      <SEO title={data.page.title} />
     <div>
         {data.page.image != null &&
           <Img fluid={data.page.image.childImageSharp.fluid} />
